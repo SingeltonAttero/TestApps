@@ -1,8 +1,9 @@
-package com.yakov.weber.calculator
+package com.yakov.weber.calculator.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.yakov.weber.calculator.R
+import kotlinx.android.synthetic.main.toolbar.*
 
 class CalculateActivity : AppCompatActivity() {
 

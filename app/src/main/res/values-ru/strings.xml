@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Калькулятор</string>
+    <string name="enter_amount">Введите сумму</string>
+    <string name="tip">Чаевые</string>
+    <string name="total">Всего</string>
+</resources>
