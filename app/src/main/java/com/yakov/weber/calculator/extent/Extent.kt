@@ -4,5 +4,9 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import timber.log.Timber
+
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View = LayoutInflater.from(context).inflate(layoutRes, this, false)
+
+fun <T> T.alsoPrintDebug(message: String = "LoggerTimber"): T = this.also { Timber.d("$message...$this") }

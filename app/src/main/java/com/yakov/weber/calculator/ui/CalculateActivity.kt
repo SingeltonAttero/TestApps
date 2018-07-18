@@ -15,5 +15,6 @@ class CalculateActivity : AppCompatActivity() {
                 .beginTransaction()
                 .add(R.id.container_fragment, CalculateFragment())
                 .commit()
+
     }
 }
