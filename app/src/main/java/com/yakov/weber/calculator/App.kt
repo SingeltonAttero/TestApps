@@ -19,17 +19,17 @@ class App : Application() {
         initAppScope()
     }
 
-    private fun initToothpick(){
-        if (BuildConfig.DEBUG){
+    private fun initToothpick() {
+        if (BuildConfig.DEBUG) {
             Toothpick.setConfiguration(Configuration.forDevelopment().preventMultipleRootScopes())
-        }else{
+        } else {
             Toothpick.setConfiguration(Configuration.forProduction().disableReflection())
             FactoryRegistryLocator.setRootRegistry(com.yakov.weber.calculator.FactoryRegistry())
             MemberInjectorRegistryLocator.setRootRegistry(com.yakov.weber.calculator.MemberInjectorRegistry())
         }
     }
 
-    private fun initAppScope(){
+    private fun initAppScope() {
         val appScope = Toothpick.openScope(DI.APP_SCOPE)
         appScope.installModules(AppModule(this))
     }

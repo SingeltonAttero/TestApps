@@ -26,9 +26,7 @@ class CalculateFragment : Fragment(), CalculateView {
             .openScope(DI.APP_SCOPE)
             .getInstance(CalculatePresenter::class.java)
 
-
     override fun showResult(message: String) {
-
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(R.layout.fragment_colculate)

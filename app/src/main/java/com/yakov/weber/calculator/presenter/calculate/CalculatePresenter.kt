@@ -5,5 +5,4 @@ import com.arellomobile.mvp.MvpPresenter
 import javax.inject.Inject
 
 @InjectViewState
-class CalculatePresenter @Inject constructor() : MvpPresenter<CalculateView>() {
-}
+class CalculatePresenter @Inject constructor() : MvpPresenter<CalculateView>()
