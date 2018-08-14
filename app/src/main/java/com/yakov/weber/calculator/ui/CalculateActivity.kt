@@ -11,10 +11,10 @@ class CalculateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(main_toolbar)
+
         supportFragmentManager
                 .beginTransaction()
                 .add(R.id.container_fragment, CalculateFragment())
                 .commit()
-
     }
 }
