@@ -1,42 +1,65 @@
-package com.yakov.weber.calculator.ui
+package com.yakov.weber.calculator.ui.calculate
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.jakewharton.rxbinding2.widget.RxSeekBar
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yakov.weber.calculator.R
 import com.yakov.weber.calculator.extent.alsoPrintDebug
-import com.yakov.weber.calculator.extent.inflate
 import com.yakov.weber.calculator.presenter.calculate.CalculatePresenter
 import com.yakov.weber.calculator.presenter.calculate.CalculateView
 import com.yakov.weber.calculator.toothpick.DI
+import com.yakov.weber.calculator.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_colculate.*
 import toothpick.Toothpick
 
-class CalculateFragment : Fragment(), CalculateView {
+class CalculateFragment : BaseFragment(), CalculateView {
+
+    override val layoutRes: Int
+        get() = R.layout.fragment_colculate
 
     @InjectPresenter
     lateinit var presenter: CalculatePresenter
+
     @ProvidePresenter
     fun calculatePresenterProvider(): CalculatePresenter = Toothpick
             .openScope(DI.APP_SCOPE)
             .getInstance(CalculatePresenter::class.java)
 
-    override fun showResult(message: String) {
-    }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return container?.inflate(R.layout.fragment_colculate)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.initPresenter()
+        presenter.bindTextSeekBar(percent_seek_bar.textAlignment)
         RxTextView.textChangeEvents(edit_text_input)
                 .skipInitialValue()
                 .filter { it.text().length <= 10 }
-                .subscribe { text_view_output_result.text = it.text().alsoPrintDebug("TAG_TIMBER") }
+                .subscribe {  presenter.bindText(it.text().toString())}.bind()
+
+        RxSeekBar.userChanges(percent_seek_bar)
+                .skipInitialValue()
+                .subscribe {
+                    presenter.bindTextSeekBar(it) }.bind()
+
     }
+
+    override fun showResult(message: String) {
+
+    }
+
+    override fun showPercent(message: String) {
+        percent_text_view.text = message
+    }
+
+    override fun showChip(message: String) {
+
+    }
+
+    override fun bindText(message: String) {
+        text_view_output_result.text = message
+    }
+
+
+
 }

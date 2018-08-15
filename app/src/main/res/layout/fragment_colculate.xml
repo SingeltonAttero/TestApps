@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CalculateActivity">
+    tools:context=".ui.calculate.CalculateActivity">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/percent_text_view"
         style="@style/text_title_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,14 +56,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <SeekBar
+        android:id="@+id/percent_seek_bar"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:max="30"
         android:progress="10"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/percent_text_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/percent_text_view"
+        app:layout_constraintTop_toTopOf="@+id/percent_text_view" />
 
     <TextView
         android:id="@+id/text_title_tip"
@@ -74,7 +75,7 @@
         android:paddingTop="16dp"
         android:text="@string/tip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/percent_text_view" />
 
     <TextView
         android:id="@+id/text_view_result_tip"
