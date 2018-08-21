@@ -9,6 +9,6 @@ class AppModule (context: Context) : Module() {
     init {
         Timber.d("Create Global dependencies...")
         bind(Context::class.java).toInstance(context)
-        bind(ResManager::class.java).toInstance(ResManager(context))
+        bind(ResManager::class.java).singletonInScope()
     }
 }

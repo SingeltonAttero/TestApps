@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorLightPrimary"
+            android:digits="0123456789"
             android:inputType="number"
             android:paddingBottom="16dp"
             android:paddingStart="8dp"

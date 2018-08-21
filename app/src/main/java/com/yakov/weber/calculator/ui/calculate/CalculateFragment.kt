@@ -7,11 +7,12 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.jakewharton.rxbinding2.widget.RxSeekBar
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.yakov.weber.calculator.R
-import com.yakov.weber.calculator.extent.alsoPrintDebug
 import com.yakov.weber.calculator.presenter.calculate.CalculatePresenter
 import com.yakov.weber.calculator.presenter.calculate.CalculateView
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseFragment
+import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_colculate.*
 import toothpick.Toothpick
 
@@ -30,18 +31,21 @@ class CalculateFragment : BaseFragment(), CalculateView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.initPresenter()
-        presenter.bindTextSeekBar(percent_seek_bar.textAlignment)
+        presenter.initPresenter(percent_seek_bar.progress)
         RxTextView.textChangeEvents(edit_text_input)
                 .skipInitialValue()
-                .filter { it.text().length <= 10 }
-                .subscribe {  presenter.bindText(it.text().toString())}.bind()
+                .filter { it.count() < 10 }
+                .subscribe {
+                    presenter.bindText(it.text())
+                    presenter.calculate()
+                }.bind()
 
-        RxSeekBar.userChanges(percent_seek_bar)
+         RxSeekBar.userChanges(percent_seek_bar)
                 .skipInitialValue()
                 .subscribe {
-                    presenter.bindTextSeekBar(it) }.bind()
-
+                    presenter.bindTextSeekBar(it)
+                    presenter.calculate()
+                }.bind()
     }
 
     override fun showResult(message: String) {
@@ -53,10 +57,10 @@ class CalculateFragment : BaseFragment(), CalculateView {
     }
 
     override fun showChip(message: String) {
-
+        text_view_result_tip.text = message
     }
 
-    override fun bindText(message: String) {
+    override fun bindText(message: CharSequence) {
         text_view_output_result.text = message
     }
 
