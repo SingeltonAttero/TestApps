@@ -34,22 +34,22 @@ class CalculateFragment : BaseFragment(), CalculateView {
         presenter.initPresenter(percent_seek_bar.progress)
         RxTextView.textChangeEvents(edit_text_input)
                 .skipInitialValue()
-                .filter { it.count() < 10 }
+                .filter { it.text().length < 10 }
                 .subscribe {
                     presenter.bindText(it.text())
-                    presenter.calculate()
+                    presenter.calculate(text_view_output_result.text.toString(),percent_seek_bar.progress.toString())
                 }.bind()
 
          RxSeekBar.userChanges(percent_seek_bar)
                 .skipInitialValue()
                 .subscribe {
                     presenter.bindTextSeekBar(it)
-                    presenter.calculate()
+                    presenter.calculate(edit_text_input.text.toString(),percent_seek_bar.progress.toString())
                 }.bind()
     }
 
     override fun showResult(message: String) {
-
+        text_view_result_total.text = message
     }
 
     override fun showPercent(message: String) {

@@ -7,30 +7,31 @@ import com.yakov.weber.calculator.system.ResManager
 import javax.inject.Inject
 
 @InjectViewState
-class CalculatePresenter @Inject constructor(val resManager: ResManager) : BasePresenter<CalculateView>(){
+class CalculatePresenter @Inject constructor(private val resManager: ResManager) : BasePresenter<CalculateView>(){
 
-    private var defaultPercent = 0.1F
-    private var amountDigits = 0.0F
+
 
 
     fun initPresenter(default:Int){
-        viewState.showPercent(default.toString())
-        defaultPercent = (default / 100).toFloat()
+        viewState.showPercent(resManager.getString(R.string.percent,default))
     }
 
     fun bindTextSeekBar(percent:Int){
         viewState.showPercent(resManager.getString(R.string.percent,percent))
     }
 
-    fun calculate(){
-        val resultTip = amountDigits * defaultPercent
-        val resultTotal = resultTip + amountDigits
-        viewState.showChip(resultTip.toString())
-        viewState.showResult(resultTotal.toString())
+    fun calculate(amount:String,percent: String){
+        if (!amount.isEmpty()){
+            val chipResult = percent.toFloat() * (amount.toFloat() / 100)
+            val totalResult = amount.toFloat() + chipResult
+            viewState.showChip(resManager.getString(R.string.chip_result,chipResult))
+            viewState.showResult(totalResult.toString())
+        }
+
     }
 
     fun bindText(message:CharSequence){
-        amountDigits = message.toString().toFloat()
+        if (message.isEmpty())viewState.bindText("")
         viewState.bindText(message)
     }
 }
