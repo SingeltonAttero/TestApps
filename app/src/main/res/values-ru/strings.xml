@@ -5,6 +5,7 @@
     <string name="tip">Чаевые</string>
     <string name="total">Всего</string>
     <string name="percent">%d%%</string>
-    <string name="chip_result">%d</string>
-    <string name="total_result">%.2d P</string>
+    <string name="chip_result">%.2f P</string>
+    <string name="total_result">%.2f P</string>
+    <string name="result" translatable="false">$d</string>
 </resources>

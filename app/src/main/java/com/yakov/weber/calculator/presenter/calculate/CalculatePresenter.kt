@@ -14,6 +14,8 @@ class CalculatePresenter @Inject constructor(private val resManager: ResManager)
 
     fun initPresenter(default:Int){
         viewState.showPercent(resManager.getString(R.string.percent,default))
+        viewState.showChip(resManager.getString(R.string.chip_result,0f))
+        viewState.showResult(resManager.getString(R.string.total_result,0f))
     }
 
     fun bindTextSeekBar(percent:Int){
@@ -21,11 +23,12 @@ class CalculatePresenter @Inject constructor(private val resManager: ResManager)
     }
 
     fun calculate(amount:String,percent: String){
-        if (!amount.isEmpty()){
+        val toCharArray = amount.toCharArray()
+        if (!amount.isEmpty() && toCharArray.last().isDigit() && toCharArray.first().isDigit()){
             val chipResult = percent.toFloat() * (amount.toFloat() / 100)
             val totalResult = amount.toFloat() + chipResult
             viewState.showChip(resManager.getString(R.string.chip_result,chipResult))
-            viewState.showResult(totalResult.toString())
+            viewState.showResult(resManager.getString(R.string.total_result,totalResult))
         }
 
     }
