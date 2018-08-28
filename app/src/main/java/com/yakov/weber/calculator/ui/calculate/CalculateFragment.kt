@@ -11,21 +11,19 @@ import com.yakov.weber.calculator.presenter.calculate.CalculatePresenter
 import com.yakov.weber.calculator.presenter.calculate.CalculateView
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseFragment
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_colculate.*
 import toothpick.Toothpick
-import javax.inject.Singleton
 
 class CalculateFragment : BaseFragment(), CalculateView {
+
 
     override val layoutRes: Int
         get() = R.layout.fragment_colculate
 
+
     @InjectPresenter
     lateinit var presenter: CalculatePresenter
 
-    @Singleton
     @ProvidePresenter
     fun calculatePresenterProvider(): CalculatePresenter = Toothpick
             .openScope(DI.APP_SCOPE)
@@ -34,24 +32,29 @@ class CalculateFragment : BaseFragment(), CalculateView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.initPresenter(percent_seek_bar.progress)
+
+    }
+
+    override fun bindView() {
+
         RxTextView.textChangeEvents(edit_text_input)
                 .skipInitialValue()
                 .filter { it.text().length < 10 }
-                .subscribe ({
+                .subscribe({
                     presenter.bindText(it.text())
-                    presenter.calculate(text_view_output_result.text.toString(),percent_seek_bar.progress.toString())
-                },{
+                    presenter.calculate(text_view_output_result.text.toString(), percent_seek_bar.progress.toString())
+                }, {
                     it.printStackTrace()
                 }).bind()
 
-         RxSeekBar.userChanges(percent_seek_bar)
+        RxSeekBar.userChanges(percent_seek_bar)
                 .skipInitialValue()
-                .subscribe ({
-                    presenter.bindTextSeekBar(it)
-                    presenter.calculate(edit_text_input.text.toString(),percent_seek_bar.progress.toString())
-                },{
-                    it.printStackTrace()
-                }).bind()
+                .subscribe({
+            presenter.bindTextSeekBar(it)
+            presenter.calculate(edit_text_input.text.toString(), percent_seek_bar.progress.toString())
+        }, {
+            it.printStackTrace()
+        }).bind()
     }
 
     override fun showResult(message: String) {
@@ -69,7 +72,6 @@ class CalculateFragment : BaseFragment(), CalculateView {
     override fun bindText(message: CharSequence) {
         text_view_output_result.text = message
     }
-
 
 
 }

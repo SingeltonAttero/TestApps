@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">Android book app</string>
+    <string name="calculate_app">Calculator</string>
     <string name="enter_amount">Enter amount</string>
     <string name="tip">Tip</string>
-    <string name="percent">%d</string>
-    <string name="total">Total</string>
+    <string name="percent">%d%%</string>
     <string name="result">$d</string>
+    <string name="total">Total</string>
     <string name="chip_result">%.2f $</string>
     <string name="total_result">%.2f $</string>
 </resources>

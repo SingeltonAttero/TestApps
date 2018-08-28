@@ -7,4 +7,5 @@ interface CalculateView : MvpView {
     fun showPercent(message:String)
     fun showChip(message:String)
     fun bindText(message:CharSequence)
+    fun bindView()
 }
