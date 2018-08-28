@@ -15,6 +15,7 @@ import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_colculate.*
 import toothpick.Toothpick
+import javax.inject.Singleton
 
 class CalculateFragment : BaseFragment(), CalculateView {
 
@@ -24,6 +25,7 @@ class CalculateFragment : BaseFragment(), CalculateView {
     @InjectPresenter
     lateinit var presenter: CalculatePresenter
 
+    @Singleton
     @ProvidePresenter
     fun calculatePresenterProvider(): CalculatePresenter = Toothpick
             .openScope(DI.APP_SCOPE)
@@ -35,17 +37,21 @@ class CalculateFragment : BaseFragment(), CalculateView {
         RxTextView.textChangeEvents(edit_text_input)
                 .skipInitialValue()
                 .filter { it.text().length < 10 }
-                .subscribe {
+                .subscribe ({
                     presenter.bindText(it.text())
                     presenter.calculate(text_view_output_result.text.toString(),percent_seek_bar.progress.toString())
-                }.bind()
+                },{
+                    it.printStackTrace()
+                }).bind()
 
          RxSeekBar.userChanges(percent_seek_bar)
                 .skipInitialValue()
-                .subscribe {
+                .subscribe ({
                     presenter.bindTextSeekBar(it)
                     presenter.calculate(edit_text_input.text.toString(),percent_seek_bar.progress.toString())
-                }.bind()
+                },{
+                    it.printStackTrace()
+                }).bind()
     }
 
     override fun showResult(message: String) {

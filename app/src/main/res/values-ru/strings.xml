@@ -7,5 +7,4 @@
     <string name="percent">%d%%</string>
     <string name="chip_result">%.2f P</string>
     <string name="total_result">%.2f P</string>
-    <string name="result" translatable="false">$d</string>
 </resources>

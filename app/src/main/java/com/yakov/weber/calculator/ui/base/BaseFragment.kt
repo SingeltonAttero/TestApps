@@ -19,9 +19,10 @@ abstract class BaseFragment : MvpAppCompatFragment(), GroupDisposableComponent b
 
     protected open fun restoreState(bundle:Bundle){}
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         clear()
     }
+
 
 }
