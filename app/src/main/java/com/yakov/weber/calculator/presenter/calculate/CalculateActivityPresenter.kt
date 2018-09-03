@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class CalculateActivityPresenter @Inject constructor(private val resManager: ResManager) : BasePresenter<CalculateActivityView>() {
-    fun initFragment(){
+    fun initFragment() {
         viewState.initCalculateFragment()
         viewState.setTitleToolbar(resManager.getString(R.string.calculate_app))
     }

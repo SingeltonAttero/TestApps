@@ -8,7 +8,6 @@ import com.yakov.weber.calculator.presenter.main.MainActivityPresenter
 import com.yakov.weber.calculator.presenter.main.MainActivityView
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseActivity
-import com.yakov.weber.calculator.ui.calculate.CalculateFragment
 import kotlinx.android.synthetic.main.toolbar.*
 import toothpick.Toothpick
 
@@ -18,11 +17,11 @@ class MainActivity : BaseActivity(), MainActivityView {
         get() = R.layout.activity_main
 
     @InjectPresenter
-    lateinit var presenter:MainActivityPresenter
+    lateinit var presenter: MainActivityPresenter
 
     @ProvidePresenter
     fun mainActivityPresenterProvider(): MainActivityPresenter =
-            Toothpick.openScope(DI.APP_SCOPE)
+            Toothpick.openScope(DI.APP_SCOPES)
                     .getInstance(MainActivityPresenter::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {

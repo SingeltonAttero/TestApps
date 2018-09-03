@@ -4,5 +4,5 @@ import com.arellomobile.mvp.MvpView
 
 interface CalculateActivityView : MvpView {
     fun initCalculateFragment()
-    fun setTitleToolbar(message:String)
+    fun setTitleToolbar(message: String)
 }

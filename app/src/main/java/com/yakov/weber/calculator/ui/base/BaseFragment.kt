@@ -9,7 +9,7 @@ import com.yakov.weber.calculator.extent.inflate
 import com.yakov.weber.calculator.system.global.GroupDisposableComponent
 import com.yakov.weber.calculator.system.global.GroupDisposableComponentImpl
 
-abstract class BaseFragment : MvpAppCompatFragment(), GroupDisposableComponent by GroupDisposableComponentImpl(){
+abstract class BaseFragment : MvpAppCompatFragment(), GroupDisposableComponent by GroupDisposableComponentImpl() {
 
     abstract val layoutRes: Int
 
@@ -17,12 +17,10 @@ abstract class BaseFragment : MvpAppCompatFragment(), GroupDisposableComponent b
         return container?.inflate(layoutRes)
     }
 
-    protected open fun restoreState(bundle:Bundle){}
+    protected open fun restoreState(bundle: Bundle) {}
 
     override fun onDestroy() {
         super.onDestroy()
         clear()
     }
-
-
 }

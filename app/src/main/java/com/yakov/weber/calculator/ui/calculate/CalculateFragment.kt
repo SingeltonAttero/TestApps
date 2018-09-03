@@ -16,23 +16,20 @@ import toothpick.Toothpick
 
 class CalculateFragment : BaseFragment(), CalculateView {
 
-
     override val layoutRes: Int
         get() = R.layout.fragment_colculate
-
 
     @InjectPresenter
     lateinit var presenter: CalculatePresenter
 
     @ProvidePresenter
     fun calculatePresenterProvider(): CalculatePresenter = Toothpick
-            .openScope(DI.APP_SCOPE)
+            .openScope(DI.APP_SCOPES)
             .getInstance(CalculatePresenter::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.initPresenter(percent_seek_bar.progress)
-
     }
 
     override fun bindView() {
@@ -72,6 +69,4 @@ class CalculateFragment : BaseFragment(), CalculateView {
     override fun bindText(message: CharSequence) {
         text_view_output_result.text = message
     }
-
-
 }

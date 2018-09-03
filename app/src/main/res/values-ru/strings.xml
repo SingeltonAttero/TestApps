@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Приложения по книге</string>
+    <string name="app_name">Cook Book App</string>
     <string name="calculate_app">Калькулятор</string>
     <string name="enter_amount">Введите сумму</string>
     <string name="tip">Чаевые</string>
@@ -9,4 +9,5 @@
     <string name="total">Всего</string>
     <string name="chip_result">%.2f P</string>
     <string name="total_result">%.2f P</string>
+    <string name="flag_quiz">Выбрать флаг</string>
 </resources>

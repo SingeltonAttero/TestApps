@@ -6,7 +6,11 @@ import javax.inject.Inject
 
 @InjectViewState
 class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
-    fun openAppCalculate(){
+    fun openAppCalculate() {
         viewState.openCalculateApp()
+    }
+
+    fun openAppFlag() {
+        viewState.openActivityFlag()
     }
 }

@@ -13,16 +13,15 @@ import toothpick.Toothpick
 
 class CalculateActivity : BaseActivity(), CalculateActivityView {
 
-
     override val layoutRes: Int
         get() = R.layout.activity_calculate
 
     @InjectPresenter
-    lateinit var activityPresenter:CalculateActivityPresenter
+    lateinit var activityPresenter: CalculateActivityPresenter
 
     @ProvidePresenter
     fun calculateActivityPresenterProvider(): CalculateActivityPresenter = Toothpick
-            .openScope(DI.APP_SCOPE)
+            .openScope(DI.APP_SCOPES)
             .getInstance(CalculateActivityPresenter::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,5 +38,4 @@ class CalculateActivity : BaseActivity(), CalculateActivityView {
         setSupportActionBar(main_toolbar)
         main_toolbar.title = message
     }
-
 }

@@ -3,6 +3,7 @@ package com.yakov.weber.calculator
 import android.app.Application
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.toothpick.module.AppModule
+import com.yakov.weber.calculator.toothpick.module.FlagModule
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import toothpick.Toothpick
@@ -30,8 +31,8 @@ class App : Application() {
     }
 
     private fun initAppScope() {
-        val appScope = Toothpick.openScope(DI.APP_SCOPE)
-        appScope.installModules(AppModule(this))
+        Toothpick.openScope(DI.APP_SCOPES).installModules(AppModule(this))
+        Toothpick.openScopes(DI.APP_SCOPES, DI.APP_FLAG).installModules(FlagModule())
     }
 
     private fun initTimber() {

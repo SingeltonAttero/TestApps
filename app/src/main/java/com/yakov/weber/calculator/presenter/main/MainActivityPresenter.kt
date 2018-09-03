@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class MainActivityPresenter @Inject constructor() : BasePresenter<MainActivityView>() {
-    fun initFragmentMain(){
+    fun initFragmentMain() {
         viewState.initMainFragment()
     }
 }

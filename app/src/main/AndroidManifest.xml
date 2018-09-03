@@ -13,7 +13,13 @@
         <activity
             android:name=".ui.calculate.CalculateActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible" />
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:parentActivityName=".ui.main.MainActivity"
+            />
+
+        <activity android:name=".ui.flag.activity.MainFlagActivity"
+            android:parentActivityName=".ui.main.MainActivity"
+            />
 
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
@@ -22,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

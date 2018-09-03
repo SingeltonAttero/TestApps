@@ -5,7 +5,7 @@ import io.reactivex.disposables.Disposable
 
 interface GroupDisposableComponent {
 
-    val compositeDisposable:CompositeDisposable
+    val compositeDisposable: CompositeDisposable
 
     fun Disposable.bind()
 

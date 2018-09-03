@@ -11,6 +11,4 @@ open class BasePresenter<V : MvpView> : MvpPresenter<V>(), GroupDisposableCompon
         super.onDestroy()
         clear()
     }
-
-
 }
