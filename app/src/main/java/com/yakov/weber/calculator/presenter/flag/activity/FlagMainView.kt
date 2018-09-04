@@ -1,4 +1,4 @@
-package com.yakov.weber.calculator.presenter.flag.main
+package com.yakov.weber.calculator.presenter.flag.activity
 
 import com.arellomobile.mvp.MvpView
 

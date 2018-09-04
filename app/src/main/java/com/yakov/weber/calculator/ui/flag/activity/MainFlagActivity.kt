@@ -5,8 +5,8 @@ import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.yakov.weber.calculator.R
-import com.yakov.weber.calculator.presenter.flag.main.FlagMainPresenter
-import com.yakov.weber.calculator.presenter.flag.main.FlagMainView
+import com.yakov.weber.calculator.presenter.flag.activity.FlagMainPresenter
+import com.yakov.weber.calculator.presenter.flag.activity.FlagMainView
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseActivity
 import com.yakov.weber.calculator.ui.flag.fragment.MainFlagFragment
