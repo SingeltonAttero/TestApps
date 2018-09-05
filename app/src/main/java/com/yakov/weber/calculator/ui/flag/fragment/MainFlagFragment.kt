@@ -10,7 +10,7 @@ import com.yakov.weber.calculator.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_flag.*
 import toothpick.Toothpick
 
-class MainFlagFragment : BaseFragment(),FlagFragmentView {
+class MainFlagFragment : BaseFragment(), FlagFragmentView {
 
     @InjectPresenter
     lateinit var presenter: FlagFragmentPresenter
@@ -27,10 +27,7 @@ class MainFlagFragment : BaseFragment(),FlagFragmentView {
     override val layoutRes: Int
         get() = R.layout.fragment_main_flag
 
-
-
     override fun showError(message: String) {
         error_text_view.text = message
     }
-
 }
