@@ -10,4 +10,17 @@
     <string name="chip_result">%.2f P</string>
     <string name="total_result">%.2f P</string>
     <string name="flag_quiz">Выбрать флаг</string>
+    <string name="number_of_choices_description">Кнопки ответов 2, 4, 6 или 8</string>
+    <string name="world_regions">Районы</string>
+    <string name="world_regions_description">Регионы, включенные в тест</string>
+    <string name="guess_country">Угадай страну</string>
+    <string name="results">%1$d ответов, %2$.02f%% правильно</string>
+    <string name="incorrect_answer">Неправильно</string>
+    <string name="default_region_message">Необходимо выбрать один регион. Северной Америки как региона по умолчанию</string>
+    <string name="restarting_quiz">Тест будет перезапущен с новыми настройками</string>
+    <string name="question">" Вопрос %1$d из %2$d"</string>
+    <string name="reset_quiz">Сбросить тест</string>
+    <string name="image_description">Изображение текущего флага в викторине</string>
+    <string name="default_region">Северная Америка</string>
+    <string name="setting">Настройки</string>
 </resources>

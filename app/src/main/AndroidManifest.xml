@@ -12,15 +12,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.calculate.CalculateActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            android:parentActivityName=".ui.main.MainActivity"
-            />
-
-        <activity android:name=".ui.flag.activity.MainFlagActivity"
-            android:parentActivityName=".ui.main.MainActivity"
-            />
-
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name=".ui.flag.activity.MainFlagActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".ui.flag.activity.setting.SettingsActivity"/>
     </application>
 
 </manifest>

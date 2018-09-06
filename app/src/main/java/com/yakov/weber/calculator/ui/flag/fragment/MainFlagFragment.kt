@@ -1,5 +1,7 @@
 package com.yakov.weber.calculator.ui.flag.fragment
 
+import android.os.Bundle
+import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.yakov.weber.calculator.R
@@ -27,7 +29,12 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView {
     override val layoutRes: Int
         get() = R.layout.fragment_main_flag
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun showError(message: String) {
-        error_text_view.text = message
+
     }
 }
