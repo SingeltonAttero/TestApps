@@ -1,6 +1,7 @@
 package com.yakov.weber.calculator
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.toothpick.module.AppModule
 import com.yakov.weber.calculator.toothpick.module.FlagModule
@@ -16,6 +17,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         initTimber()
+        initStetho()
         initToothpick()
         initAppScope()
     }
@@ -31,8 +33,20 @@ class App : Application() {
     }
 
     private fun initAppScope() {
-        Toothpick.openScope(DI.APP_SCOPES).installModules(AppModule(this))
+        val appScopes = Toothpick.openScope(DI.APP_SCOPES)
+        appScopes.installModules(AppModule(this))
         Toothpick.openScopes(DI.APP_SCOPES, DI.APP_FLAG).installModules(FlagModule())
+    }
+
+    private fun initStetho() {
+        if (BuildConfig.DEBUG) {
+            val initializerBuilder = Stetho
+                    .newInitializerBuilder(this)
+                    .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                    .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                    .build()
+            Stetho.initialize(initializerBuilder)
+        }
     }
 
     private fun initTimber() {

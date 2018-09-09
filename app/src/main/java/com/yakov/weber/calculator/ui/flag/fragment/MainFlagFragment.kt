@@ -2,6 +2,10 @@ package com.yakov.weber.calculator.ui.flag.fragment
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.LinearLayout
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.yakov.weber.calculator.R
@@ -10,9 +14,20 @@ import com.yakov.weber.calculator.presenter.flag.fragment.FlagFragmentView
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_flag.*
+import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.view
 import toothpick.Toothpick
 
-class MainFlagFragment : BaseFragment(), FlagFragmentView {
+class MainFlagFragment : BaseFragment(), FlagFragmentView , View.OnClickListener{
+
+
+    companion object {
+        private val TAG = MainFlagFragment::class.java.simpleName
+        fun newInstance() = MainFlagFragment()
+    }
+
+    private lateinit var animation: Animation
+    private var listContainerButton = arrayListOf<LinearLayout>()
 
     @InjectPresenter
     lateinit var presenter: FlagFragmentPresenter
@@ -22,19 +37,32 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView {
             .openScope(DI.APP_FLAG)
             .getInstance(FlagFragmentPresenter::class.java)
 
-    companion object {
-        fun newInstance() = MainFlagFragment()
-    }
-
     override val layoutRes: Int
         get() = R.layout.fragment_main_flag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(false)
+        animation = AnimationUtils.loadAnimation(activity,R.anim.snake_anim_button_flag)
+        animation.repeatCount = 3
+        listContainerButton.addAll(listOf(row1_button_container,row2_button_container,row3_button_container,row4_button_container))
+        listContainerButton.forEach { container ->
+            for (i in 0 until container.childCount) {
+                container.getChildAt(i).setOnClickListener(this)
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.attachView(this)
+    }
+
+    override fun onClick(v: View) {
+        flag_image_view.startAnimation(animation)
     }
 
     override fun showError(message: String) {
-
+        question_text_view.text = message
     }
 }

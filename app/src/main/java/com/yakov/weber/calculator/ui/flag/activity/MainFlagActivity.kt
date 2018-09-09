@@ -1,6 +1,8 @@
 package com.yakov.weber.calculator.ui.flag.activity
 
 import android.app.FragmentTransaction
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -14,6 +16,7 @@ import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseActivity
 import com.yakov.weber.calculator.ui.flag.activity.setting.SettingsActivity
 import com.yakov.weber.calculator.ui.flag.fragment.MainFlagFragment
+import com.yakov.weber.calculator.ui.flag.fragment.setting.SettingFragment
 
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.startActivity
@@ -21,8 +24,10 @@ import toothpick.Toothpick
 
 class MainFlagActivity : BaseActivity(), FlagMainView {
 
+
     @InjectPresenter
     lateinit var presenter: FlagMainPresenter
+    private var isPhoneDevice = true
 
     @ProvidePresenter
     fun flagMainPresenterProvider(): FlagMainPresenter = Toothpick
@@ -34,15 +39,47 @@ class MainFlagActivity : BaseActivity(), FlagMainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.setContent()
+
+
+        // TODO Регистрация слушателя для изменений SharedPreferences
+
+        val screenSize = resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+        val screenOrientation = resources.configuration.orientation
+        if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE && Configuration.ORIENTATION_LANDSCAPE == screenOrientation ||
+                screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE && Configuration.ORIENTATION_LANDSCAPE == screenOrientation){
+            isPhoneDevice = false
+        }
+        requestedOrientation = if (isPhoneDevice){
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }else{
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        }
+
     }
 
     override fun showText(message: String) {
     }
 
+
+    override fun onStart() {
+        super.onStart()
+
+        if (isPhoneDevice){
+            presenter.setContentPhone()
+        }else{
+            presenter.setContentTable()
+        }
+
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        MenuInflater(this).inflate(R.menu.menu_flag_main, menu)
-        return super.onCreateOptionsMenu(menu)
+        val  orientation = resources.configuration.orientation
+        return if (orientation == Configuration.ORIENTATION_PORTRAIT){
+            MenuInflater(this).inflate(R.menu.menu_flag_main, menu)
+            true
+        }else{
+            super.onCreateOptionsMenu(menu)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -55,7 +92,13 @@ class MainFlagActivity : BaseActivity(), FlagMainView {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun showFragment() {
+    override fun setSettingFragment() {
+        fragmentManager.beginTransaction()
+                .replace(R.id.container_setting_flag_fragment, SettingFragment())
+                .commit()
+    }
+
+    override fun setPhoneFragment() {
         val fragment = MainFlagFragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.container_flag_fragment, fragment)

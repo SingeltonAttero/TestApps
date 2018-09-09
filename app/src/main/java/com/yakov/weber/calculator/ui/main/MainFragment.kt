@@ -28,15 +28,8 @@ class MainFragment : BaseFragment(), MainView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button_calculate_app.setOnClickListener { presenter.openAppCalculate() }
-        button_flag_quiz_app.setOnClickListener { presenter.openAppFlag() }
+        button_calculate_app.setOnClickListener { startActivity<CalculateActivity>() }
+        button_flag_quiz_app.setOnClickListener {  startActivity<MainFlagActivity>() }
     }
 
-    override fun openCalculateApp() {
-        startActivity<CalculateActivity>()
-    }
-
-    override fun openActivityFlag() {
-        startActivity<MainFlagActivity>()
-    }
 }
