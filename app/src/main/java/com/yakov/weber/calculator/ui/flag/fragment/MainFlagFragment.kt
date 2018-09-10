@@ -21,6 +21,7 @@ import toothpick.Toothpick
 class MainFlagFragment : BaseFragment(), FlagFragmentView , View.OnClickListener{
 
 
+
     companion object {
         private val TAG = MainFlagFragment::class.java.simpleName
         fun newInstance() = MainFlagFragment()
@@ -43,13 +44,17 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView , View.OnClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(false)
-        animation = AnimationUtils.loadAnimation(activity,R.anim.snake_anim_button_flag)
+        initField()
+
+    }
+
+    private fun initField() {
+        animation = AnimationUtils.loadAnimation(activity, R.anim.snake_anim_button_flag)
         animation.repeatCount = 3
-        listContainerButton.addAll(listOf(row1_button_container,row2_button_container,row3_button_container,row4_button_container))
+        listContainerButton.addAll(listOf(row1_button_container, row2_button_container, row3_button_container, row4_button_container))
         listContainerButton.forEach { container ->
-            for (i in 0 until container.childCount) {
-                container.getChildAt(i).setOnClickListener(this)
-            }
+            (0 until container.childCount)
+                    .forEach { container.getChildAt(it).setOnClickListener(this) }
         }
     }
 
@@ -60,6 +65,16 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView , View.OnClickListener
 
     override fun onClick(v: View) {
         flag_image_view.startAnimation(animation)
+    }
+
+    override fun showContainerAnswerButton(countRow: IntRange) {
+        listContainerButton.forEach { it.visibility = View.GONE }
+        countRow.forEach { listContainerButton[it].visibility = View.VISIBLE }
+
+    }
+
+    override fun showQuestionNumber(message: String) {
+        question_number_text_view.text = message
     }
 
     override fun showError(message: String) {
