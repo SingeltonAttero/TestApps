@@ -1,10 +1,12 @@
 package com.yakov.weber.calculator.ui.flag.fragment
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.LinearLayout
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -14,12 +16,10 @@ import com.yakov.weber.calculator.presenter.flag.fragment.FlagFragmentView
 import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_flag.*
-import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.view
 import toothpick.Toothpick
+import java.io.InputStream
 
 class MainFlagFragment : BaseFragment(), FlagFragmentView , View.OnClickListener{
-
 
 
     companion object {
@@ -65,6 +65,29 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView , View.OnClickListener
 
     override fun onClick(v: View) {
         flag_image_view.startAnimation(animation)
+        presenter.loadNextFlag()
+    }
+
+    override fun showRandomButtonCorrectAnswer(row: Int, column: Int, correctAnswer: String) {
+        val correctButton = listContainerButton[row].getChildAt(column) as Button
+        correctButton.text = correctAnswer
+    }
+
+
+    override fun showButtonFlagAnswer(listFlag: List<String>,countRow:IntRange) {
+        countRow.forEach {
+            for (column in 0 until listContainerButton[it].childCount){
+                val button = listContainerButton[it].getChildAt(column) as Button
+                button.isEnabled = true
+                val filename = listFlag[(it * 2) + column]
+                button.text = filename
+            }
+        }
+    }
+
+    override fun setFlagStream(stream: InputStream,nameFlag:String) {
+        flag_image_view.setImageDrawable(Drawable.createFromStream(stream,nameFlag))
+
     }
 
     override fun showContainerAnswerButton(countRow: IntRange) {
