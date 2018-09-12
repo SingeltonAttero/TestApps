@@ -25,6 +25,8 @@ class FlagInteractor @Inject constructor(private val repository: FlagFileReposit
 
     fun randomNumber(bound:Int) = random.nextInt(bound)
 
+    fun delayLoadFlag() = repository.loadNextFlagProvider()
+
     fun getSelectFlag(): MutableList<String> {
         val listSelect = mutableListOf<String>()
         var flagCounter = 1
