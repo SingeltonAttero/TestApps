@@ -28,9 +28,9 @@ class FlagFileRepository @Inject constructor(
     fun getInputStreamFlag(region:String,nextNameImage:String): InputStream = context
             .assets.open("$region/$nextNameImage.png")
 
-    fun loadNextFlagProvider() = Completable.fromAction {}
+    fun loadNextFlagProvider(): Completable = Completable.fromAction {}
             .subscribeOn(scheduler.newThread())
-            .delay(2000,TimeUnit.MILLISECONDS)
+            .delay(1200,TimeUnit.MILLISECONDS)
             .observeOn(scheduler.ui())
 
 

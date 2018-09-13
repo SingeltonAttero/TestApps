@@ -21,6 +21,8 @@ class FlagInteractor @Inject constructor(private val repository: FlagFileReposit
 
     fun getGuessRows() = repository.guessRows() / 2
 
+    fun getGuessRowsRange() = 0 until (repository.guessRows() / 2)
+
     fun getCounterName(name:String) = name.substring(name.indexOf("-") + 1).replace("_"," ")
 
     fun randomNumber(bound:Int) = random.nextInt(bound)
@@ -43,5 +45,4 @@ class FlagInteractor @Inject constructor(private val repository: FlagFileReposit
     }
 
     fun getImage(region:String,nameImage:String) = repository.getInputStreamFlag(region,nameImage)
-    fun getGuessRowsRange() = 0 until (repository.guessRows() / 2)
 }

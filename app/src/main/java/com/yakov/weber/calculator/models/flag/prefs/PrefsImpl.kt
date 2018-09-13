@@ -23,7 +23,7 @@ class PrefsImpl @Inject constructor(private val context: Context) : Prefs {
         context.defaultSharedPreferences }
 
     override var choices: String
-        get() = sharedPrefs.getString(CHOICES, "")
+        get() = sharedPrefs.getString(CHOICES, "2")
         set(value) {
             sharedPrefs.edit { putString(CHOICES, value) }
         }

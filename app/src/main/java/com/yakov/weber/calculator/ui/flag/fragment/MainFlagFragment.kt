@@ -47,9 +47,13 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView, View.OnClickListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(false)
-        initField()
         presenter.loadNextFlag()
+        initField()
+    }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.attachView(this)
     }
 
     private fun initField() {
@@ -63,12 +67,13 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView, View.OnClickListener 
     }
 
 
-
     override fun onClick(v: View) {
-        val button = v is Button
-        presenter.checkAnswer(button.toString())
+        val button = v as Button
+        presenter.checkAnswer(button.text.toString())
+       button.isEnabled = presenter.isEnabledButton
 
     }
+
 
     override fun startAnimate(animateOut: Boolean) {
         val animator: Animator
@@ -110,13 +115,12 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView, View.OnClickListener 
 
     override fun setFlagStream(stream: InputStream, nameFlag: String) {
         flag_image_view.setImageDrawable(Drawable.createFromStream(stream, nameFlag))
-
+        stream.close()
     }
 
     override fun showContainerAnswerButton(countRow: IntRange) {
         listContainerButton.forEach { it.visibility = View.GONE }
         countRow.forEach { listContainerButton[it].visibility = View.VISIBLE }
-
     }
 
 
@@ -126,31 +130,34 @@ class MainFlagFragment : BaseFragment(), FlagFragmentView, View.OnClickListener 
         answer_text_view.text = null
     }
 
-    override fun showCorrectAnswer(message: String) {
+    override fun showCorrectAnswer(message: String,countRow:IntRange) {
         answer_text_view.text = message
         answer_text_view.setTextColor(ContextCompat.getColor(this.context!!,R.color.colorPrimary))
-       disableButtons()
+       disableButtons(countRow)
     }
 
-    private fun disableButtons() {
-        //TODO button enabled
-    }
-
-    private fun resetQuiz(){
-
+    private fun disableButtons(countButton:IntRange) {
+        countButton.forEach {
+            val linearLayout = listContainerButton[it]
+            for (i in 0 until linearLayout.childCount){
+                linearLayout.getChildAt(i).isEnabled = false
+            }
+        }
     }
 
     override fun showFinishDialog(totalCount:Int) {
         val dialog = AlertDialog.Builder(activity).apply {
             this.setMessage(getString(R.string.results, totalCount, (1000 / totalCount).toDouble()))
-            this.setPositiveButton(R.string.reset_quiz) { _, _ -> resetQuiz() }
+            this.setPositiveButton(R.string.reset_quiz) { _, _ -> presenter.resetQuiz()}
         }.create()
+        dialog.setCancelable(false)
         dialog.show()
 
     }
 
     override fun showIncorrectAnswer(message: String) {
         flag_image_view.startAnimation(animation)
+        answer_text_view.startAnimation(animation)
         answer_text_view.text = message
         answer_text_view.setTextColor(ContextCompat.getColor(this.context!!,R.color.red_error))
     }
