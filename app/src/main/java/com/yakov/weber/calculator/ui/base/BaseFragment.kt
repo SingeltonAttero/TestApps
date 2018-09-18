@@ -8,7 +8,6 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.yakov.weber.calculator.extent.inflate
 import com.yakov.weber.calculator.system.global.GroupDisposableComponent
 import com.yakov.weber.calculator.system.global.GroupDisposableComponentImpl
-import java.io.InputStream
 
 abstract class BaseFragment : MvpAppCompatFragment(), GroupDisposableComponent by GroupDisposableComponentImpl() {
 

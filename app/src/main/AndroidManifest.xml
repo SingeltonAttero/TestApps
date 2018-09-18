@@ -26,8 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.flag.activity.setting.SettingsActivity" />
         <activity
-            android:name=".ui.flag.activity.setting.SettingsActivity"/>
+            android:name=".ui.paint.activity.PaintActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

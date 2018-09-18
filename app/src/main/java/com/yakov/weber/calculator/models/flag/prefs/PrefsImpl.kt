@@ -17,9 +17,8 @@ class PrefsImpl @Inject constructor(private val context: Context) : Prefs {
         edit().apply { block() }.apply()
     }
 
-
     private val sharedPrefs by lazy {
-        PreferenceManager.setDefaultValues(context, R.xml.preference,false)
+        PreferenceManager.setDefaultValues(context, R.xml.preference, false)
         context.defaultSharedPreferences }
 
     override var choices: String

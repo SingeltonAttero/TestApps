@@ -1,27 +1,25 @@
 package com.yakov.weber.calculator.presenter.flag.fragment
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.yakov.weber.calculator.R
-import com.yakov.weber.calculator.extent.alsoPrintDebug
 import com.yakov.weber.calculator.extent.printConstruction
 import com.yakov.weber.calculator.models.flag.interactor.FlagInteractor
 import com.yakov.weber.calculator.presenter.base.BasePresenter
 import com.yakov.weber.calculator.system.ResManager
-import com.yakov.weber.calculator.ui.flag.fragment.MainFlagFragment
 import javax.inject.Inject
 
 @InjectViewState
 class FlagFragmentPresenter @Inject constructor(
-        private val interactor: FlagInteractor,
-        private val resManager: ResManager) : BasePresenter<FlagFragmentView>() {
+    private val interactor: FlagInteractor,
+    private val resManager: ResManager
+) : BasePresenter<FlagFragmentView>() {
 
     private var correctAnswer = ""
     private var correctAnswersCount = 0
     private var totalCount = 0
     private var fileNameList = mutableListOf<String>()
 
-    var isEnabledButton:Boolean = true
+    var isEnabledButton: Boolean = true
         private set
 
     init {
@@ -34,15 +32,13 @@ class FlagFragmentPresenter @Inject constructor(
         viewState.showContainerAnswerButton(interactor.getGuessRowsRange())
     }
 
-    fun resetQuiz(){
+    fun resetQuiz() {
         fileNameList.clear()
         fileNameList = interactor.getSelectFlag()
         correctAnswer = ""
         correctAnswersCount = 0
         totalCount = 0
         loadNextFlag()
-
-
     }
 
     fun loadNextFlag() {
@@ -59,7 +55,6 @@ class FlagFragmentPresenter @Inject constructor(
         viewState.showButtonFlagAnswer(listAllFlag.map { interactor.getCounterName(it) }, interactor.getGuessRowsRange())
         viewState.showRandomButtonCorrectAnswer(interactor.randomNumber(interactor.getGuessRows()),
                 interactor.randomNumber(2), interactor.getCounterName(correctAnswer))
-
     }
 
     fun checkAnswer(guess: String) {
@@ -84,13 +79,10 @@ class FlagFragmentPresenter @Inject constructor(
             viewState.showIncorrectAnswer(resManager.getString(R.string.incorrect_answer))
             isEnabledButton = false
         }
-
     }
 
     private fun startAnimate(animateOut: Boolean) {
         if (correctAnswersCount == 0) return
         viewState.startAnimate(animateOut)
-
     }
-
 }

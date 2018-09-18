@@ -24,7 +24,6 @@ import toothpick.Toothpick
 
 class MainFlagActivity : BaseActivity(), FlagMainView {
 
-
     @InjectPresenter
     lateinit var presenter: FlagMainPresenter
     private var isPhoneDevice = true
@@ -40,51 +39,45 @@ class MainFlagActivity : BaseActivity(), FlagMainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        // TODO Регистрация слушателя для изменений SharedPreferences
-
         val screenSize = resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
         val screenOrientation = resources.configuration.orientation
         if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE && Configuration.ORIENTATION_LANDSCAPE == screenOrientation ||
-                screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE && Configuration.ORIENTATION_LANDSCAPE == screenOrientation){
+                screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE && Configuration.ORIENTATION_LANDSCAPE == screenOrientation) {
             isPhoneDevice = false
         }
-        requestedOrientation = if (isPhoneDevice){
+        requestedOrientation = if (isPhoneDevice) {
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        }else{
+        } else {
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         }
-
     }
 
     override fun showText(message: String) {
     }
 
-
     override fun onStart() {
         super.onStart()
 
-        if (isPhoneDevice){
+        if (isPhoneDevice) {
             presenter.setContentPhone()
-        }else{
+        } else {
             presenter.setContentTable()
         }
-
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val  orientation = resources.configuration.orientation
-        return if (orientation == Configuration.ORIENTATION_PORTRAIT){
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val orientation = resources.configuration.orientation
+        return if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             MenuInflater(this).inflate(R.menu.menu_flag_main, menu)
             true
-        }else{
+        } else {
             super.onCreateOptionsMenu(menu)
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
-            R.id.action_settings ->{
+        when (item?.itemId) {
+            R.id.action_settings -> {
                 startActivity<SettingsActivity>()
             }
         }

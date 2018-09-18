@@ -15,7 +15,4 @@ class SettingsActivity : PreferenceActivity() {
                 .replace(android.R.id.content, SettingFragment())
                 .commit()
     }
-
-
-
 }

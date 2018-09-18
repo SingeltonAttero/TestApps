@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/color"
+        android:id="@+id/change_color"
+        android:icon="@drawable/ic_color_lens_blue"
+        app:showAsAction="ifRoom"
+        />
+
+    <item android:title="@string/thickness_of_brush"
+        android:id="@+id/line_width_paint"
+        android:icon="@drawable/ic_brush_blue"
+        app:showAsAction="ifRoom"
+        />
+
+    <item android:title="@string/remove"
+        android:id="@+id/remove_paint"
+        android:icon="@drawable/ic_delete_blue"
+        app:showAsAction="ifRoom"
+        />
+
+    <item android:title="@string/save"
+        android:id="@+id/save_paint"
+        android:icon="@drawable/ic_save_blue"
+        app:showAsAction="ifRoom"
+        />
+
+    <item android:title="@string/print"
+        android:id="@+id/print_paint"
+        android:icon="@drawable/ic_local_printshop_blue"
+        app:showAsAction="ifRoom"
+        />
+
+
+</menu>

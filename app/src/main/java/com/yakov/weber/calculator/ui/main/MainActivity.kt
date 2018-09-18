@@ -26,7 +26,7 @@ class MainActivity : BaseActivity(), MainActivityView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(main_toolbar)
+        toolbar.setDisplayHomeAsUpEnabled(false)
         presenter.initFragmentMain()
     }
 

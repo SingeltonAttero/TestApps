@@ -11,6 +11,7 @@ import com.yakov.weber.calculator.toothpick.DI
 import com.yakov.weber.calculator.ui.base.BaseFragment
 import com.yakov.weber.calculator.ui.calculate.CalculateActivity
 import com.yakov.weber.calculator.ui.flag.activity.MainFlagActivity
+import com.yakov.weber.calculator.ui.paint.activity.PaintActivity
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.jetbrains.anko.support.v4.startActivity
 import toothpick.Toothpick
@@ -22,6 +23,7 @@ class MainFragment : BaseFragment(), MainView {
 
     @InjectPresenter
     lateinit var presenter: MainPresenter
+
     @ProvidePresenter
     fun mainPresenterProvider(): MainPresenter = Toothpick.openScope(DI.APP_SCOPES)
             .getInstance(MainPresenter::class.java)
@@ -29,7 +31,7 @@ class MainFragment : BaseFragment(), MainView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         button_calculate_app.setOnClickListener { startActivity<CalculateActivity>() }
-        button_flag_quiz_app.setOnClickListener {  startActivity<MainFlagActivity>() }
+        button_flag_quiz_app.setOnClickListener { startActivity<MainFlagActivity>() }
+        button_flag_paint_app.setOnClickListener { startActivity<PaintActivity>() }
     }
-
 }

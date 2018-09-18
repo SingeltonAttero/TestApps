@@ -1,8 +1,6 @@
 package com.yakov.weber.calculator.toothpick.module
 
 import android.content.Context
-import com.yakov.weber.calculator.models.flag.prefs.Prefs
-import com.yakov.weber.calculator.models.flag.prefs.PrefsImpl
 import com.yakov.weber.calculator.models.global.AppSchedulers
 import com.yakov.weber.calculator.models.global.SchedulersProvider
 import com.yakov.weber.calculator.system.ResManager
@@ -15,6 +13,5 @@ class AppModule (context: Context) : Module() {
         bind(Context::class.java).toInstance(context)
         bind(ResManager::class.java).singletonInScope()
         bind(SchedulersProvider::class.java).toInstance(AppSchedulers())
-
     }
 }
