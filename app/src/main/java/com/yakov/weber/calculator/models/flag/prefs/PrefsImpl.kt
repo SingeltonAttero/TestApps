@@ -17,13 +17,12 @@ class PrefsImpl @Inject constructor(private val context: Context) : Prefs {
         edit().apply { block() }.apply()
     }
 
-
     private val sharedPrefs by lazy {
-        PreferenceManager.setDefaultValues(context, R.xml.preference,false)
+        PreferenceManager.setDefaultValues(context, R.xml.preference, false)
         context.defaultSharedPreferences }
 
     override var choices: String
-        get() = sharedPrefs.getString(CHOICES, "")
+        get() = sharedPrefs.getString(CHOICES, "2")
         set(value) {
             sharedPrefs.edit { putString(CHOICES, value) }
         }

@@ -17,6 +17,7 @@
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".ui.flag.activity.MainFlagActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".ui.main.MainActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
@@ -25,8 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.flag.activity.setting.SettingsActivity" />
         <activity
-            android:name=".ui.flag.activity.setting.SettingsActivity"/>
+            android:name=".ui.paint.activity.PaintActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

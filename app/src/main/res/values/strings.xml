@@ -21,6 +21,12 @@
     <string name="question">Question %1$d of %2$d</string>
     <string name="reset_quiz">Reset Quiz</string>
     <string name="image_description">Image of the current flag in the quiz</string>
-    <string name="default_region">North America</string>
+    <string name="default_region">North_America</string>
     <string name="setting">setting</string>
+    <string name="draftsman">Draftsman</string>
+    <string name="color">Color</string>
+    <string name="thickness_of_brush">Thickness of brush</string>
+    <string name="save">Save</string>
+    <string name="remove">Удалить</string>
+    <string name="print">Распечатать</string>
 </resources>

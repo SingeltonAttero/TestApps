@@ -9,5 +9,5 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorDivider">#BDBDBD</color>
     <!-- second color app -->
-    <color name="red_error">#b70003</color>
+    <color name="red_error">#b5b70003</color>
 </resources>

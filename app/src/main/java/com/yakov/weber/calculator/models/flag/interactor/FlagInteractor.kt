@@ -6,8 +6,10 @@ import com.yakov.weber.calculator.system.ResManager
 import java.security.SecureRandom
 import javax.inject.Inject
 
-class FlagInteractor @Inject constructor(private val repository: FlagFileRepository,
-                                         private val resManager: ResManager) {
+class FlagInteractor @Inject constructor(
+    private val repository: FlagFileRepository,
+    private val resManager: ResManager
+) {
 
     companion object {
         const val FLAG_IN_COUNT = 10
@@ -17,13 +19,17 @@ class FlagInteractor @Inject constructor(private val repository: FlagFileReposit
 
     fun getAllCountryFlag() = repository.nameCounterFlag().toMutableList()
 
-    fun questNumber(counter:Int) = resManager.getString(R.string.question, counter, FLAG_IN_COUNT)
+    fun questNumber(counter: Int) = resManager.getString(R.string.question, counter, FLAG_IN_COUNT)
 
     fun getGuessRows() = repository.guessRows() / 2
 
-    fun getCounterName(name:String) = name.substring(name.indexOf("-") + 1).replace("_"," ")
+    fun getGuessRowsRange() = 0 until (repository.guessRows() / 2)
 
-    fun randomNumber(bound:Int) = random.nextInt(bound)
+    fun getCounterName(name: String) = name.substring(name.indexOf("-") + 1).replace("_", " ")
+
+    fun randomNumber(bound: Int) = random.nextInt(bound)
+
+    fun delayLoadFlag() = repository.loadNextFlagProvider()
 
     fun getSelectFlag(): MutableList<String> {
         val listSelect = mutableListOf<String>()
@@ -40,6 +46,5 @@ class FlagInteractor @Inject constructor(private val repository: FlagFileReposit
         return listSelect
     }
 
-    fun getImage(region:String,nameImage:String) = repository.getInputStreamFlag(region,nameImage)
-    fun getGuessRowsRange() = 0 until (repository.guessRows() / 2)
+    fun getImage(region: String, nameImage: String) = repository.getInputStreamFlag(region, nameImage)
 }

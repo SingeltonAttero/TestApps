@@ -21,6 +21,12 @@
     <string name="question">" Вопрос %1$d из %2$d"</string>
     <string name="reset_quiz">Сбросить тест</string>
     <string name="image_description">Изображение текущего флага в викторине</string>
-    <string name="default_region">Северная Америка</string>
+    <string name="default_region">North_America</string>
     <string name="setting">Настройки</string>
+    <string name="draftsman">Рисовальщик</string>
+    <string name="color">Цвет</string>
+    <string name="thickness_of_brush">Толщина кисти</string>
+    <string name="save">Сохранять</string>
+    <string name="remove">Удалить</string>
+    <string name="print">Распечатать</string>
 </resources>
