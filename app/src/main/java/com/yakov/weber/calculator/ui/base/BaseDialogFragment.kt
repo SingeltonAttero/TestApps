@@ -10,12 +10,12 @@ import com.yakov.weber.calculator.system.global.GroupDisposableComponent
 import com.yakov.weber.calculator.system.global.GroupDisposableComponentImpl
 import timber.log.Timber
 
-abstract class BaseDialogFragment : MvpAppCompatDialogFragment(), GroupDisposableComponent by GroupDisposableComponentImpl(){
+abstract class BaseDialogFragment : MvpAppCompatDialogFragment(), GroupDisposableComponent by GroupDisposableComponentImpl() {
 
     abstract val builder: AlertDialog.Builder
-    abstract val simpleClassName:String
+    abstract val simpleClassName: String
 
-    private fun log(message:String){
+    private fun log(message: String) {
         Timber.w("$message $simpleClassName")
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -37,6 +37,5 @@ abstract class BaseDialogFragment : MvpAppCompatDialogFragment(), GroupDisposabl
     override fun onDismiss(dialog: DialogInterface?) {
         super.onDismiss(dialog)
         log("onDismiss")
-
     }
 }
