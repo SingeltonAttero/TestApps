@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.yakov.weber.calculator.R
 import com.yakov.weber.calculator.ui.base.BaseActivity
+import com.yakov.weber.calculator.ui.paint.dialog.ColorDialogFragment
 import com.yakov.weber.calculator.ui.paint.fragment.PaintFragment
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -29,7 +30,7 @@ class PaintActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.change_color -> { onBackPressed() }
+            R.id.change_color -> { ColorDialogFragment().show(supportFragmentManager,"ColorDialog") }
         }
 
         return super.onOptionsItemSelected(item)
