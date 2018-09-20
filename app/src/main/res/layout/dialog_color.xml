@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test color dialog"
-        android:layout_gravity="center"
-        android:textSize="24sp"
+        android:layout_marginStart="@dimen/margin_side_16"
+        android:layout_marginTop="@dimen/margin_side_16"
+        android:text="@string/choose_color"
         android:textColor="@color/colorPrimaryText"
-        />
+        android:textSize="19sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/text_view_alpha"
+        style="@style/text_view_color_choose"
+        android:layout_marginStart="@dimen/margin_side_16"
+        android:layout_marginTop="@dimen/margin_side_16"
+        android:text="@string/alpha"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_red"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/text_view_red"
+        style="@style/text_view_color_choose"
+        android:layout_marginTop="@dimen/margin_side_8"
+        android:text="@string/red"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_green"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/text_view_alpha"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_alpha" />
+
+    <TextView
+        android:id="@+id/text_view_green"
+        style="@style/text_view_color_choose"
+        android:layout_marginTop="@dimen/margin_side_8"
+        android:text="@string/green"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_blue"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/text_view_red"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_red" />
+
+    <TextView
+        android:id="@+id/text_view_blue"
+        style="@style/text_view_color_choose"
+        android:layout_marginBottom="@dimen/margin_side_24"
+        android:layout_marginTop="@dimen/margin_side_8"
+        android:text="@string/blue"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/text_view_green"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_green" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="@dimen/margin_side_16"
+        android:layout_marginStart="@dimen/margin_side_16"
+        android:background="#28221133"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_blue" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <SeekBar
+        android:id="@+id/alpha_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_side_16"
+        android:max="300"
+        android:progress="44"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_alpha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/text_view_alpha" />
+
+    <SeekBar
+        android:id="@+id/red_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_side_16"
+        android:max="300"
+        android:progress="142"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/text_view_red" />
+
+    <SeekBar
+        android:id="@+id/green_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_side_16"
+        android:max="300"
+        android:progress="12"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/text_view_green" />
+
+    <SeekBar
+        android:id="@+id/blue_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_side_16"
+        android:max="300"
+        android:progress="200"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_view_blue"
+        app:layout_constraintTop_toTopOf="@+id/text_view_blue" />
+
+
+</android.support.constraint.ConstraintLayout>

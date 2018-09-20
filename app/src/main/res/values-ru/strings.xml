@@ -29,4 +29,7 @@
     <string name="save">Сохранять</string>
     <string name="remove">Удалить</string>
     <string name="print">Распечатать</string>
+    <string name="alpha">Альфа</string>
+    <string name="choose_color">Выбрать цвет</string>
+    <string name="choosen_color">Выбрать цвет</string>
 </resources>
