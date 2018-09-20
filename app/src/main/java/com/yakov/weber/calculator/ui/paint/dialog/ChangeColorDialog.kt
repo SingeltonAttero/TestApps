@@ -10,7 +10,7 @@ class ChangeColorDialog : BaseDialogFragment() {
     override val builder: AlertDialog.Builder
         get() = AlertDialog.Builder(this.activity!!).apply {
                 setView(R.layout.dialog_color)
-                setPositiveButton(getString(R.string.choosen_color), null)
+                setPositiveButton(getString(R.string.chose_color), null)
         }
 
     override val simpleClassName: String
