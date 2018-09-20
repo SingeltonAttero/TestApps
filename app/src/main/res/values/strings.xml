@@ -29,4 +29,12 @@
     <string name="save">Save</string>
     <string name="remove">Удалить</string>
     <string name="print">Распечатать</string>
+    <string name="alpha">Альфа</string>
+    <string name="red">Красный</string>
+    <string name="green">Зеленый</string>
+    <string name="blue">Синий</string>
+    <string name="choose_color">Выбрать цвет</string>
+    <string name="chose_color">Выбрать цвет</string>
+    <string name="line_thickness">Толщина линии</string>
+    <string name="choose_width">Выбрать толщину</string>
 </resources>

@@ -1,15 +1,15 @@
 package com.yakov.weber.calculator.ui.paint.dialog
 
 import android.support.v7.app.AlertDialog
+import com.yakov.weber.calculator.R
 import com.yakov.weber.calculator.ui.base.BaseDialogFragment
 
 class ChangeWidthDialog : BaseDialogFragment() {
 
     override val builder: AlertDialog.Builder
         get() = AlertDialog.Builder(this.activity!!).apply {
-            setPositiveButton("Ok", null)
-            setTitle("Test")
-            setNegativeButton("No", null)
+            setView(R.layout.width_dialog)
+            setPositiveButton(getString(R.string.choose_width),null)
         }
 
     override val simpleClassName: String
