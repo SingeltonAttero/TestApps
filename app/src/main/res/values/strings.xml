@@ -37,4 +37,7 @@
     <string name="chose_color">Выбрать цвет</string>
     <string name="line_thickness">Толщина линии</string>
     <string name="choose_width">Выбрать толщину</string>
+    <string name="fragment_one">фрагмент 1</string>
+    <string name="fragment_three">фрагмент 3</string>
+    <string name="fragment_two">фрагмент 2</string>
 </resources>

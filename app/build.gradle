@@ -28,7 +28,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.2'
 }
 kapt {
     generateStubs true //<---- remove to make the test pass
